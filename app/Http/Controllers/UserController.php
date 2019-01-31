@@ -214,7 +214,7 @@ class UserController extends Controller
 
         $user_id = $user['id'];
 
-        $products = User::find($user_id)->products()->orderBy('')->get();
+        $products = User::find($user_id)->products()->orderBy('name')->get();
 
 
 
