@@ -25,7 +25,6 @@ class UserStoreRequest extends FormRequest
 
             'name'=>'required|unique:users|max:50',
             'email'=>'required|unique:users|email',
-            'password'=>'required|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{6,}$/'
 
         ];
     }
@@ -37,10 +36,6 @@ class UserStoreRequest extends FormRequest
             'email.required'=>'Campo de email obrigatório.', //verificado
             'email.unique'=>'Este email já se encontra registado.', //verificado
             'email.email'=>'O email que inseriu não tem o formato correto.', //verificado
-            'password.required'=>'Campo de password obrigatório', //verificado
-            'password.min'=>'A password tem de ter no mínimo 6 carateres.', //verificado
-            'password.regex'=>'A password deve conter: maiúsculas, minúsculas, números e caracteres especiais.', //verificado
-            'profile_image.image'=>'Apenas são aceites ficheiros do tipo imagem.'
         ];
     }
     protected function failedValidation(Validator $validator){

@@ -15,42 +15,37 @@ class UserTableSeeder extends Seeder
         \App\User::create([
             'name'=> 'Carolina Ventura',
             'email'=>'carolinaventura@ua.pt',
-            'password'=>bcrypt('Tomate12$')
+            'profile_image'=> 'assets/imgs/avatar1.png',
 
         ]);
 
         \App\User::create([
             'name'=> 'Gabriel Faria',
             'email'=>'g.martinsfaria@ua.pt',
-            'password'=>bcrypt('Manteiga81.')
 
         ]);
 
         \App\User::create([
             'name'=> 'Alexandra Cardoso',
             'email'=>'malexandracardoso@ua.pt',
-            'password'=>bcrypt('Vitamina50#')
 
         ]);
 
         App\User::create([
             'name'=> 'Albert Einstein',
             'email'=>'einstein@ua.pt',
-            'password'=>bcrypt('E=Emcquadrado_1')
 
         ]);
 
         App\User::create([
             'name'=> 'Thomas Edison',
             'email'=>'edison@ua.pt',
-            'password'=>bcrypt('Lincandescente31*')
 
         ]);
 
         App\User::create([
             'name'=> 'admin',
             'email'=>'admin@ua.pt',
-            'password'=>bcrypt('Lincandescente31*')
 
         ]);
 

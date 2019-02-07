@@ -24,8 +24,7 @@ class UserUpdateRequest extends FormRequest
         return [
             'name'=>'nullable|unique:users|max:50',
             'email'=>'nullable|unique:users|email',
-            'password'=>'nullable|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{6,}$/',
-            'profile_image'=>'nullable|image'
+            'profile_image'=>'nullable'
         ];
     }
     public function messages(){
@@ -34,9 +33,6 @@ class UserUpdateRequest extends FormRequest
             'name.max'=>'O nome de utilizador pode ter um máximo de 50 caracteres.', //verificado
             'email.unique'=>'Este email já se encontra registado.', //verificado
             'email.email'=>'O email que inseriu não tem o formato correto.', //verificado
-            'password.min'=>'A password tem de ter no mínimo 6 carateres.', //verificado
-            'password.regex'=>'A password deve conter: maiúsculas, minúsculas, números e caracteres especiais.', //verificado
-            'profile_image.image'=>'Apenas são aceites ficheiros do tipo imagem.'
 
         ];
     }

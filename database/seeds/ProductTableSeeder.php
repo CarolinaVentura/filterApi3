@@ -11,17 +11,17 @@ class ProductTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Product::create([
+        /*\App\Product::create([
             'name'=>'Malteasers',
             'barcode'=>'5000159020312'
 
-        ]);
+        ]);*/
 
-        \App\Product::create([
+        /*\App\Product::create([
             'name'=>'Kit Kat',
             'barcode'=>'5000159020313'
 
-        ]);
+        ]);*/
 
         \App\Product::create([
             'name'=>'Leite Meio Gordo Pingo Doce',
@@ -29,11 +29,11 @@ class ProductTableSeeder extends Seeder
 
         ]);
 
-        \App\Product::create([
+        /*\App\Product::create([
             'name'=>'Oreo',
             'barcode'=>'7622300281182'
 
-        ]);
+        ]);*/
 
 
         \App\Product::create([

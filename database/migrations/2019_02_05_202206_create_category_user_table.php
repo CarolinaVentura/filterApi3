@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductUserTable extends Migration
+class CreateCategoryUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,17 @@ class CreateProductUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_user', function (Blueprint $table) {
+        Schema::create('category_user', function (Blueprint $table) {
             $table->increments('id');
 
-            $table-> integer('product_id')->unsigned()->nullable();
-            $table-> foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table-> integer('category_id')->unsigned()->nullable();
+            $table-> foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
 
 
             $table-> integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->boolean('feedback')->nullable();
-            $table->boolean('fav')->nullable()->default(false);
-
             $table->timestamps();
-
         });
     }
 
@@ -38,6 +34,6 @@ class CreateProductUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_user');
+        Schema::dropIfExists('category_user');
     }
 }

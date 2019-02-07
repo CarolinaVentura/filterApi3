@@ -14,8 +14,9 @@ class IngredientController extends Controller
      */
     public function index()
     {
+
         //
-        $ingredients = Ingredient::All();
+        $ingredients = Ingredient::orderBy('name')->get();
         return $ingredients;
     }
 
@@ -72,10 +73,22 @@ class IngredientController extends Controller
      */
     public function update(Request $request, Ingredient $ingredient)
     {
-        $data= $request -> only(['name']);
+        $data= $request -> only(['name', 'category_id', 'detach_category_id']);
 
         if($request->only(['name'])){
             $ingredient->name=$data['name'];
+        }
+
+        if($request->only(['category_id'])){
+
+            $id = $data['category_id'];
+            $ingredient->categories()->syncWithoutDetaching($id);
+        }
+
+        if($request->only(['detach_category_id'])){
+
+            $id = $data['detach_category_id'];
+            $ingredient->categories()->detach($id);
         }
 
         $ingredient->save();
@@ -96,5 +109,7 @@ class IngredientController extends Controller
             'msg'=>'Ingrediente eliminado'
         ],200);
     }
+
+
 
 }

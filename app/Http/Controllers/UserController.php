@@ -41,26 +41,11 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
 
+        $data=$request->only('name', 'email');
 
-        $data=$request->only('name', 'email','password', 'profile_image', 'ingredient_id', 'product_id');
-        if(!$request->file(['profile_image'])){
-            $data['profile_image']='userImages/default.png';
-        } else {
-            $path = $request->file('profile_image')->store('userImages', 'public');
-            $data['profile_image'] = $path;
-        }
 
-        $data['password']=bcrypt($data['password']);
         $user=\App\User::create($data);
 
-
-        $array = $data['ingredient_id'];
-        $arrayProducts = $data['product_id'];
-
-        $ingredients = Ingredient::find($array);
-        $user->ingredients()->attach($ingredients);
-
-        $products = Product::find($arrayProducts);
 
 
         return response ([
@@ -106,14 +91,17 @@ class UserController extends Controller
             [
                 'name',
                 'email',
-                'password',
                 'profile_image',
                 'ingredient_id',
                 'product_id',
                 'feedback',
                 'fav_id',
                 'detach_ing_id',
-                'detach_fav_id'
+                'detach_fav_id',
+                'detach_product_id',
+                'fav',
+                'category_id',
+                'detach_category_id'
             ]);
 
         //return $data['ingredient_id'];
@@ -126,8 +114,8 @@ class UserController extends Controller
             $user->email=$data['email'];
         }
 
-        if($request->only(['password'])){
-            $user->password=bcrypt($data['password']);
+        if($request->only(['profile_image'])){
+            $user->profile_image=$data['profile_image'];
         }
 
         if($request->only(['ingredient_id'])){
@@ -138,23 +126,24 @@ class UserController extends Controller
             $user->ingredients()->syncWithoutDetaching($id);
         }
 
-        if($request->only(['detach_ing_id'])){
-
-            $id = $data['detach_ing_id'];
-            $user->ingredients()->detach($id);
-        }
-
         if($request->only(['product_id'])){
 
-            $arrayProducts = $data['product_id'];
             $feed = $data['feedback'];
-            $user->products()->attach($arrayProducts, ['feedback' => $feed]);
+            $arrayProducts = $data['product_id'];
+            $user->products()->attach($arrayProducts, ['feedback'=>$feed]);
         }
+
 
         if($request->only(['fav_id'])){
 
             $arrayFavourites = $data['fav_id'];
             $user->favourites()->syncWithoutDetaching($arrayFavourites);
+        }
+
+        if($request->only(['detach_ing_id'])){
+
+            $id = $data['detach_ing_id'];
+            $user->ingredients()->detach($id);
         }
 
         if($request->only(['detach_fav_id'])){
@@ -163,10 +152,21 @@ class UserController extends Controller
             $user->favourites()->detach($arrayFavourites);
         }
 
-        if($request->file(['profile_image'])){
-            $path = $request ->file('profile_image')->store('userImages', 'public');
-            $data['profile_image'] = $path;
-            $user->profile_image=$data['profile_image'];
+        if($request->only(['detach_product_id'])){
+
+            $arrayProducts = $data['detach_product_id'];
+            $user->products()->detach($arrayProducts);
+        }
+
+        if($request->only(['category_id'])){
+            $id = $data['category_id'];
+            $user->categories()->syncWithoutDetaching($id);
+        }
+
+        if($request->only(['detach_category_id'])){
+
+            $id = $data['detach_category_id'];
+            $user->categories()->detach($id);
         }
 
 
@@ -214,7 +214,7 @@ class UserController extends Controller
 
         $user_id = $user['id'];
 
-        $products = User::find($user_id)->products()->orderBy('name')->get();
+        $products = User::find($user_id)->products()->orderBy('pivot_created_at', 'desc')->get();
 
 
 
@@ -230,7 +230,7 @@ class UserController extends Controller
 
         $user_id = $user['id'];
 
-        $products = User::find($user_id)->favourites()->orderBy('name')->get();
+        $products = User::find($user_id)->favourites()->orderBy('pivot_created_at', 'desc')->get();
 
 
 
@@ -254,6 +254,32 @@ class UserController extends Controller
 
     }
 
+    public function changeRow(User $user, $productId, $bool){
+
+        $merda = $user->products()->where('product_id', $productId)->get()->first();
+        $merda->pivot->fav = $bool;
+        $merda->pivot->save();
+    }
+
+
+    public function showCategories(User $user){
+
+
+        $user_id = $user['id'];
+
+        $categories = User::find($user_id)->categories()->orderBy('name')->get();
+
+
+
+        return response ([
+            'status'=>200,
+            'data'=>$categories,
+            'msg'=>'Mostrou as categorias de um user'
+        ],200);
+    }
+
+
 
 
 }
+

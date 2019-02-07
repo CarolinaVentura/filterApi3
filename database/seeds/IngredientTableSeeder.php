@@ -374,12 +374,12 @@ class IngredientTableSeeder extends Seeder
         ]);
 
         \App\Ingredient::create([
-            'name'=>'Proteina de soja',
+            'name'=>'Proteína de soja',
 
         ]);
 
         \App\Ingredient::create([
-            'name'=>'Proteina vegetal hidrolisada',
+            'name'=>'Proteína vegetal hidrolisada',
 
         ]);
 
@@ -389,7 +389,7 @@ class IngredientTableSeeder extends Seeder
         ]);
 
         \App\Ingredient::create([
-            'name'=>'Proteinas lácteas',
+            'name'=>'Proteínas lácteas',
 
         ]);
 
@@ -444,7 +444,7 @@ class IngredientTableSeeder extends Seeder
         ]);
 
         \App\Ingredient::create([
-            'name'=>'Paste de avelãs',
+            'name'=>'Pasta de avelãs',
 
         ]);
 
@@ -483,5 +483,192 @@ class IngredientTableSeeder extends Seeder
             'name'=>'Glutamato Monossódico',
 
         ]);
+
+        \App\Ingredient::create([
+            'name'=>'Chocolate de leite',
+            //id 93
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Leite em pó',
+            //id 94
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Óleo de palma',
+            //id 95
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Ácido tartárico',
+            //id 96
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Leite evaporado',
+            //id 97
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Leite desnatado',
+            //id 98
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Leite em pó',
+            //id 99
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Soro',
+            //id 100
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Caseína',
+            //id 101
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Hidrolisado de caseína',
+            //id 102
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Caseinato',
+            //id 103
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Coalho de caseína',
+            //id 104
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Lactoalbumina',
+            //id 105
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Fosfato de lactalbumina',
+            //id 106
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Lactoglobulina',
+            //id 107
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Lactulose',
+            //id 108
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Lactose',
+            //id 109
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Lactato de sódio/cálcio',
+            //id 110
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Aroma artificial de manteiga',
+            //id 111
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Gordura de manteiga',
+            //id 112
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Óleo de manteiga ',
+            //id 113
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Emulsionante',
+            //id 114
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Fortificante',
+            //id 115
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Espumante (bebidas não alcoólicas)',
+            //id 116
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Frutos secos artificiais',
+            //id 117
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Carne de vaca',
+            //id 118
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Carne de coelho',
+            //id 119
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Peixe',
+            //id 120
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Marisco',
+            //id 121
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Ossos de animais',
+            //id 122
+
+        ]);
+
+        \App\Ingredient::create([
+            'name'=>'Peles de animais',
+            //id 123
+
+        ]);
+
     }
 }

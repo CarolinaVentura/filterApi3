@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
+
 
 class User extends Authenticatable
 {
-    use  HasApiTokens, Notifiable, SoftDeletes;
+    use  Notifiable, SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'profile_image'
+        'name', 'email', 'profile_image'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -25,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token'
+        'remember_token'
     ];
 
     public function ingredients(){
@@ -33,11 +33,15 @@ class User extends Authenticatable
     }
 
     public function products(){
-        return $this->belongsToMany(Product::class)->withPivot('feedback')->withTimestamps();
+        return $this->belongsToMany(Product::class)->withPivot('feedback', 'fav')->withTimestamps();
     }
 
     public function favourites(){
-        return $this->belongsToMany(Product::class,'fav_user');
+        return $this->belongsToMany(Product::class,'fav_user')->withTimestamps();
+    }
+
+    public function categories(){
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
 }
